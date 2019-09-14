@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body background="images.jpg">
+
+<h1>Calling GIT API</h1>
+
+<p>The onclick event is used to trigger a function when an element is clicked on.</p>
+
+Enter github user id :  <input type="text" name="gid" id="gid"><br>
+
+<button onclick="fetchUsers(document.getElementById('gid').value)">Click me</button>
+
+
+<p id="idd"></p>
+<p id="avatar"></p>
+<img id="myImg">
+<p id="url"></p> 
+<p id="name"></p>
+
+<script>
+
+const id = "Iv1.822b19692e97ff64";
+const secret = "09e8826a3c00fbf9fba04801c91767e081f327f1";
+
+const fetchUsers = async (user) => {
+console.log(user);
+const api_call = await fetch(`https://api.github.com/users/${user}?client_id=${id}&client_secret=${secret}`);
+
+const data = await api_call.json();
+x = data.id;
+x1 = data.avatar_url;
+x2 = data.url;
+x3 = data.name;
+console.log(data);
+
+document.getElementById("idd").innerHTML = x;
+document.getElementById("avatar").innerHTML = x1;
+document.getElementById("url").innerHTML = x2;
+document.getElementById("name").innerHTML = x3;
+document.getElementById("myImg").src = x1;
+
+
+}
+
+
+
+</script>
+
+</body>
+</html>
